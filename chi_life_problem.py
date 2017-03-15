@@ -53,9 +53,13 @@ print(community_area_list)     #check if we have the correct information filled
 
 plt.figure(figsize=[15,7], tight_layout=True)         #adjust width, height and text
 
-plt.bar(np.arange(len(life_expectancy_90)),life_expectancy_90,color="blue")  #format the life expectancy list
+plt.bar(np.arange(len(life_expectancy_90)),life_expectancy_90,color="blue",alpha=0.3)  #format the life expectancy list
 
 plt.xticks(np.arange(len(life_expectancy_90)),life_expectancy_10)
+plt.ylim(55,80)
+plt.text(35,57,"minimum=57",color="red",fontsize=15)
+plt.arrow(17,16.4,19.7,40,head_width=0.5,color="red")
+plt.text(70,79,"maximum=79",color="red",fontsize=15)
 plt.xlabel("Neighborhood")
 plt.ylabel("Life Expectancy")
 plt.title("Life Expectancy in Chicago",fontsize=25)
