@@ -11,6 +11,59 @@
 #11  Comment your code as always.
 
 # Note:  If you would like to present something different than the above for your graph using this dataset, just let me know your intentions before you start and I will do my best to support you.
+import csv
+import numpy as np
+import matplotlib.pyplot as plt # we import libraries
+file=open("chi_life_expectancy.txt","r")  # we open the file
+life_list=[]    #make an empty list
+
+reader= csv.reader(file, delimiter="\t")    #give instructions for splitting the text
+
+for row in reader:      #split the text up
+    life_list.append(row)
+print(life_list)
 
 
+community_area_number_list=[]
+community_area_list=[]
+life_expectancy_90=[]
+lower_ci_90=[]
+upper_ci_90=[]
+life_expectancy_00=[]
+lower_ci_00=[]
+upper_ci_00=[]
+life_expectancy_10=[]
+lower_ci_10=[]
+upper_ci_10=[]     # make empty list for all the information we have
+
+for i in range (1,len(life_list)):
+    community_area_number_list.append(life_list[i][0])
+    community_area_list.append(life_list[i][1])
+    life_expectancy_90.append(float(life_list[i][2]))
+    lower_ci_90.append(life_list[i][3])
+    upper_ci_90.append(life_list[i][4])
+    life_expectancy_00.append(life_list[i][5])
+    lower_ci_00.append(life_list[i][6])
+    upper_ci_00.append(life_list[i][7])
+    life_expectancy_10.append(life_list[i][8])
+    lower_ci_10.append(life_list[i][9])
+    upper_ci_10.append(life_list[i][10])      #fill up the lists
+
+print(community_area_list)     #check if we have the correct information filled
+
+plt.figure(figsize=[15,7], tight_layout=True)         #adjust width, height and text
+
+plt.bar(np.arange(len(life_expectancy_90)),life_expectancy_90,color="blue")  #format the life expectancy list
+
+plt.xticks(np.arange(len(life_expectancy_90)),life_expectancy_10)
+plt.xlabel("Neighborhood")
+plt.ylabel("Life Expectancy")
+plt.title("Life Expectancy in Chicago",fontsize=25)
+ax=plt.gca()
+ax.set_xticklabels(community_area_list,rotation=90)     #add and rotate the text of the community area list
+
+
+
+
+plt.show()
 
