@@ -47,14 +47,47 @@ for i in range(1,len(ex_list)):
     dec+=int(ex_list[i][12])
 
 month_list = [jan,feb,mar,apr,may,june,july,aug,sept,oct,nov,dec]
-print(month_list)
+
 month_text=["January","February","March","April","May","June","July","August","September","October","November","December"]
-print(month_text)
+
+most_suc=[]
+numbers_list=[]
+extra=[]
+for i in range(1,len(ex_list)):
+    x=0
+    most_suc.append(ex_list[i][0])
+    for y in range(1,len(ex_list[i])):
+        x+=int(ex_list[i][y])
+    numbers_list.append(x)
+
+print(numbers_list)
+
+full_list=[val for pair in zip(most_suc, numbers_list) for val in pair]
+print(full_list)
+
+full_list=[full_list[i:i + 2] for i in range(0, len(full_list), 2)]
+
+def sorting(my_list):
+    for pos in range(len(my_list)):
+        min_pos = pos
+        for scan_pos in range(min_pos, len(my_list)):
+            if my_list[scan_pos][1] > my_list[min_pos][1]:
+                min_pos = scan_pos
+        temp = my_list[pos]
+        my_list[pos] = my_list[min_pos]
+        my_list[min_pos] = temp
+
+    print(my_list)
+
+sorting(full_list)
+
 plt.figure(figsize=[15,7], tight_layout=True)
 
 plt.plot(np.arange(len(month_list)),month_list,color="red")
+plt.plot(np.arange(len(numbers_list),full_list[0][1]),color="blue")
 
 plt.xticks(np.arange(len(month_list)),month_text)
+plt.xticks(np.arange(len(numbers_list)),full_list[0][0])
 
 
 
